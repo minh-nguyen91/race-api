@@ -1,11 +1,11 @@
 package com.takima.race.runner.entities;
 
+import java.util.Objects;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-import java.util.Objects;
 
 @Entity
 public class Runner {
@@ -31,17 +31,43 @@ public class Runner {
         return Objects.hashCode(id);
     }
 
-    // Getters
-    public Long getId() { return id; }
-    public String getFirstName() { return firstName; }
-    public String getLastName() { return lastName; }
-    public String getEmail() { return email; }
-    public Integer getAge() { return age; }
+    public Long getId() {
+        return id;
+    }
 
-    // Setters
-    public void setId(Long id) { this.id = id; }
-    public void setFirstName(String firstName) { this.firstName = firstName; }
-    public void setLastName(String lastName) { this.lastName = lastName; }
-    public void setEmail(String email) { this.email = email; }
-    public void setAge(Integer age) { this.age = age; }
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 }
