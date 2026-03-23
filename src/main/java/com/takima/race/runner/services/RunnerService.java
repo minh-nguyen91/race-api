@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.takima.race.registration.repositories.RegistrationRepository;
 import com.takima.race.runner.entities.Runner;
 import com.takima.race.runner.repositories.RunnerRepository;
 
@@ -13,9 +15,11 @@ import com.takima.race.runner.repositories.RunnerRepository;
 public class RunnerService {
 
     private final RunnerRepository runnerRepository;
+    private final RegistrationRepository registrationRepository;
 
-    public RunnerService(RunnerRepository runnerRepository) {
+    public RunnerService(RunnerRepository runnerRepository, RegistrationRepository registrationRepository) {
         this.runnerRepository = runnerRepository;
+        this.registrationRepository = registrationRepository;
     }
 
     public List<Runner> getAll() {
@@ -48,8 +52,10 @@ public class RunnerService {
         return runnerRepository.save(existingRunner);
     }
 
+    @Transactional 
     public void delete(Long id) {
         Runner runner = getById(id);
+        registrationRepository.deleteAll(registrationRepository.findByRunnerId(id));
         runnerRepository.delete(runner);
     }
 
